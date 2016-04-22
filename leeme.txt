@@ -1,0 +1,1 @@
+Para el correcto funcionamiento del proyecto tienes que cambiar en el archivo .htaccess la dirección de tu aplicación, la estructura de carpetas tal como se explica en el aprtado del curso
