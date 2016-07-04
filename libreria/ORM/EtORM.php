@@ -111,19 +111,25 @@ class EtORM extends \Conexion{
         }
         //echo $query;
         //preparamos la consulta
-        self::getConexion();
-        $res = self::$cnx->prepare($query);
-        foreach ($filtered as $key => &$val) {//cargamos todos los valores de los parametros
-            $res->bindParam(":".$key, $val);
+        try {
+            self::getConexion();
+            $res = self::$cnx->prepare($query);
+            foreach ($filtered as $key => &$val) {//cargamos todos los valores de los parametros
+                $res->bindParam(":".$key, $val);
+            }
+            //realizamos una respuesta
+            if($res->execute()){
+                $this->id = self::$cnx->lastInsertId();
+                self::getDesconectar();
+                return true;
+            }else{
+                echo "asadads";
+                return false;
+            }
+        } catch (Exception $e) {
+            echo 'Excepción capturada: ',  $e->getMessage(), "\n";
         }
-        //realizamos una respuesta
-        if($res->execute()){
-            $this->id = self::$cnx->lastInsertId();
-            self::getDesconectar();
-            return true;
-        }else{
-            return false;
-        }
+        
     }
 
     public static function where($columna,$valor){

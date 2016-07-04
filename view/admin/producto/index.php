@@ -9,7 +9,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Listado de usuarios | <a href="<?php url('usuario/nuevo')?>" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo usuario</a>
+					<h1 class="page-header">Listado de productos | <a href="<?php url('producto/nuevo')?>" class="btn btn-primary"><i class="fa fa-plus"></i> Nuevo producto</a>
 					</h1>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -21,19 +21,19 @@
 					<tr>
 						<th>#</th>
 						<th>Nombre</th>
-						<th>Email</th>
+						<th>Precio</th>
 						<th>Acción</th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($usuarios as $usuario) {?>
+					<?php foreach ($productos as $producto) {?>
 					<tr>
-						<td><?php echo $usuario->id ?></td>
-						<td><?php echo $usuario->usuario ?></td>
-						<td><?php echo $usuario->email ?></td>
+						<td><?php echo $producto->id ?></td>
+						<td><?php echo $producto->nombre ?></td>
+						<td><?php echo 'S/. ' . number_format($producto->precio, 2) ?></td>
 						<td>
-							<a class="btn btn-primary btn-sm" href="<?php url('usuario/editar/' . $usuario->id)?>">Editar</a>
-							<button class="btn btn-danger btn-sm" onclick="confirmar('<?php url('usuario/eliminar/' . $usuario->id)?>')">Eliminar</button>
+							<a class="btn btn-primary btn-sm" href="<?php url('producto/editar/' . $producto->id)?>">Editar</a>
+							<button class="btn btn-danger btn-sm" onclick="confirmar('<?php url('producto/eliminar/' . $producto->id)?>')">Eliminar</button>
 						</td>
 					</tr>
 					<?php }?>
